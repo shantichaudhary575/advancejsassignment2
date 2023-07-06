@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asynchronous Programming</title>
+</head>
+<body>
+    <h1>Product Details </h1>
+    <div id="id">ID :</div>
+    <div id="name">Name :</div>
+    <div id="price">Price :</div>
+    <div id="image">Image :</div>
+    <div id="colors">Colors :</div>
+    <div id="company">Company :</div>
+    <div id="description">Description :</div>
+    <div id="category">Category :</div>
+    <div id="shipping">shipping :</div>
+</body>
+<script>
+    const url="https://course-api.com/react-store-products";
+    const id= document.getElementById("id")
+    const name= document.getElementById("name")
+    const price= document.getElementById("price")
+    const image= document.getElementById("image")
+    const colors= document.getElementById("colors")
+    const company= document.getElementById("company")
+    const description= document.getElementById("description")
+    const category= document.getElementById("category")
+    const shipping= document.getElementById("shipping")
+    function processData(data){
+     const idVal=data[0].id;
+     console.log(data[0].id)
+     id.innerHTML+=idVal
+    const nameVal=data[0].name;
+    name.innerHTML+=nameVal;
+    const priceVal=data[0].price;
+    price.innerHTML+=priceVal
+    const imageVal=data[0].image.src;
+    console.log(data[0].image)
+    image.innerHTML=imageVal;
+    const colorVal=data[0].colors;
+    colors.innerHTML+=colorVal
+    const compaVal=data[0].company;
+    company.innerHTML+=compaVal
+    const descrVal=data[0].description;
+    description.innerHTML+=descrVal
+    const categVal=data[0].category;
+    category.innerHTML+=categVal
+    const shippVal=data[0].shipping;
+    shipping.innerHTML+=shippVal
+    }
+    const fetchData=async function(){
+    try{
+        const response =await fetch(url)
+const data=await response.json()
+processData(data)
+    }catch(error)
+    {
+        console.log("Error",error)
+    }
+    };
+    fetchData();
+    </script>
+</html>
